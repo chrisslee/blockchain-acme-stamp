@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      ACME Process Run
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page-process-run">
+  <div id="processRun-container">
+      <ion-item id="data.partid">
+        <ion-label stacked>
+          PartID
+        </ion-label>
+        <ion-input type="text" placeholder="Part Id" [(ngModel)]="data.partid"></ion-input>
+      </ion-item>
+      <ion-item id="data.length">
+        <ion-range min="1090" max="2010" step="1" color="positive" value="2000" [(ngModel)]="data.length">
+          <ion-label range-left>
+            Length
+          </ion-label>
+          <ion-label range-left>1090</ion-label>
+          <ion-label range-right>2010</ion-label>
+        </ion-range>
+      </ion-item>
+      <ion-item id="data.width">
+        <ion-range min="990" max="1010" step="1" color="positive" value="1000" [(ngModel)]="data.width">
+          <ion-label range-left>
+            Width
+          </ion-label>
+          <ion-label range-left>990</ion-label>
+          <ion-label range-right>1020</ion-label>
+        </ion-range>
+      </ion-item>
+      <ion-item id="data.height">
+        <ion-range min="490" max="510" step="1" color="positive" value="500" [(ngModel)]="data.height">
+          <ion-label range-left>
+            Height
+          </ion-label>
+          <ion-label range-left>450</ion-label>
+          <ion-label range-right>525</ion-label>
+        </ion-range>
+      </ion-item>
+      <ion-item id="data.scratched">
+        <ion-label>
+          Scratched?
+        </ion-label>
+        <ion-toggle color="assertive" checked="false" [(ngModel)]="data.scratched"></ion-toggle>
+      </ion-item>
+      <button id="processRun-write" ion-button color="balanced" block icon-left (click)="write()">
+        <ion-icon name="checkmark-circle"></ion-icon>
+        Save to ProcessChain
+      </button>      
+      <ion-item id="data.response">
+          <ion-label>
+              {{data.response}}
+          </ion-label>
+      </ion-item>
+  </div>
+</ion-content>

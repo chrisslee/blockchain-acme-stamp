@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      ACME subchain view
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page-process-chain-view">
+  <button id="process-chain-view-read" ion-button color="balanced" block icon-left (click)="getBlocks()">
+    Refresh
+  </button>
+  <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+  <button ion-button type="button" (click)="sort()">Sort</button>
+
+  <ion-card id="processChainView-card21">
+    <ion-list>
+
+      <ion-item text-wrap id="block" *ngFor="let block of blocks | search : terms | sort: {property: column, order: order}">
+        <ion-card>
+          <ion-card-header>
+              {{block.transactionId}}
+          </ion-card-header>
+          <ion-card-content class="item item-text-wrap">
+            <p> {{block.newValue}}</p>
+          </ion-card-content>
+          
+          <p>{{block.timestamp}}</p>
+        </ion-card>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+</ion-content>
