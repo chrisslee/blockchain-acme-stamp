@@ -24,7 +24,7 @@ export class ProcessSettings {
     
   }
   
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.storage.get('channel').then((val) => {
       console.log('on channel', val);
       this.channel = val;

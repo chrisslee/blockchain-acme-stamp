@@ -30,7 +30,7 @@ export class ProcessRunPage {
 
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
 
     this.storage.get('channel').then((val) => {
       this.channelid = val;

@@ -28,12 +28,14 @@ export class ProcessChainViewPage {
 
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
+
     this.storage.get('channel').then((val) => {
       this.channelid = val;
     });
 
-    this.getBlocks();
+    this.blocks=[];
+    
   }
 
   getBlocks() {
@@ -42,10 +44,14 @@ export class ProcessChainViewPage {
          blocks => this.items = blocks,
          error =>  this.errorMessage = <any>error);
     
-    var self = this;
-    this.blocks = this.items.filter(function (el) {
-      return el.newValue.indexOf(self.channelid) > 0;
-    });
+    if(this.channelid != "Ford"){
+      var self = this;
+      this.blocks = this.items.filter(function (el) {
+        return el.newValue.indexOf(self.channelid) > 0;
+      });
+    } else{
+      this.blocks = this.items;
+    }
 
   }
 
