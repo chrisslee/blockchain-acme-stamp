@@ -3,50 +3,44 @@ import { NavController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { Storage } from '@ionic/storage';
 
+
 @Component({
-  selector: 'page-process-chain-view',
-  templateUrl: 'process-chain-view.html'
+  selector: 'page-settings',
+  templateUrl: 'process-settings.html'
 })
 
-export class ProcessChainViewPage {
+export class ProcessSettings {
   descending: boolean = false;
   order: number;
   column: string = 'timestamp';
-  channel: string;
 
+  
   blocks: string[];
   errorMessage: string;
-  items: any = [];
 
-  channelid: string;
+  channel: string;
 
   constructor(public navCtrl: NavController, public rest: RestProvider, public storage: Storage) {
-  
-    this.storage.get('channel').then((val) => {
-      this.channelid = val;
-    });
-
+    
   }
-
+  
   ionViewDidEnter() {
     this.storage.get('channel').then((val) => {
-      this.channelid = val;
+      console.log('on channel', val);
+      this.channel = val;
     });
+  }
 
-    this.getBlocks();
+  channelChange(){
+    this.storage.set("channel", this.channel);
+    console.log("switching to " + this.channel)
   }
 
   getBlocks() {
     this.rest.getBlockChain()
        .subscribe(
-         blocks => this.items = blocks,
+         blocks => this.blocks = blocks,
          error =>  this.errorMessage = <any>error);
-    
-    var self = this;
-    this.blocks = this.items.filter(function (el) {
-      return el.newValue.indexOf(self.channelid) > 0;
-    });
-
   }
 
   sort(){

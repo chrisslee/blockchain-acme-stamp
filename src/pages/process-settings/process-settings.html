@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page-process-settings">
+  <ion-item>
+    <ion-label>Channel</ion-label>
+    <ion-select [(ngModel)]="channel" (ionChange)="channelChange();">
+      <ion-option value="ACME">ACME</ion-option>
+      <ion-option value="GenCo">GenCo</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-content>

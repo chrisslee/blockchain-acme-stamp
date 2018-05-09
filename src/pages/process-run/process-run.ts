@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-process-run',
@@ -9,8 +10,9 @@ import { RestProvider } from '../../providers/rest/rest';
 
 export class ProcessRunPage {
   data: any = {};
+  channelid: string;
 
-  constructor(public navCtrl: NavController, public restProvider: RestProvider) {
+  constructor(public navCtrl: NavController, public restProvider: RestProvider, public storage: Storage) {
     this.data.partid = '';
     this.data.length = '';
     this.data.width = '';
@@ -18,6 +20,21 @@ export class ProcessRunPage {
     this.data.scratched = '';
     this.data.response = '';
 
+    this.storage.get('channel').then((val) => {
+      if(val == undefined){
+        this.storage.set("channel", "ACME");
+        this.channelid = "ACME";
+      }
+        this.channelid = val;
+    });
+
+  }
+
+  ionViewDidEnter() {
+
+    this.storage.get('channel').then((val) => {
+      this.channelid = val;
+    });
   }
 
   write() {
@@ -30,7 +47,7 @@ export class ProcessRunPage {
     if (this.data.width < 996 || this.data.width > 1004) { suspect = "yes"; }
 
     let datablock = {
-      "type": "PPAP Stamp",
+      "type": this.channelid,
       "partid": this.data.partid,
       "length": this.data.length,
       "width": this.data.width,
