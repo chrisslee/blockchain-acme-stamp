@@ -14,7 +14,7 @@ export class ProcessChainViewPage {
   column: string = 'timestamp';
   channel: string;
 
-  blocks: string[];
+  blocks: any = [];
   errorMessage: string;
   items: any = [];
 
@@ -41,18 +41,27 @@ export class ProcessChainViewPage {
   getBlocks() {
     this.rest.getBlockChain()
        .subscribe(
-         blocks => this.items = blocks,
+         blocks => this.filterBlocks(blocks),
          error =>  this.errorMessage = <any>error);
-    
+  }
+
+  filterBlocks(data){
     if(this.channelid != "Ford"){
       var self = this;
-      this.blocks = this.items.filter(function (el) {
+      this.blocks = data.filter(function (el) {
         return el.newValue.indexOf(self.channelid) > 0;
       });
     } else{
-      this.blocks = this.items;
+      this.blocks = data;
     }
 
+    //this.extractPayload(this.blocks);
+  }
+
+  extractPayload(data){
+    var value = this.blocks[1].newValue;
+    var payload = JSON.parse(value);
+    console.log(payload.partid);
   }
 
   sort(){

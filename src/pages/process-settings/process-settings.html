@@ -1,17 +1,24 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Settings
+      {{channelName}} Settings
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page-process-settings">
   <ion-item>
     <ion-label>Channel</ion-label>
-    <ion-select [(ngModel)]="channel" (ionChange)="channelChange();">
-      <ion-option value="ACME">ACME</ion-option>
-      <ion-option value="GenCo">GenCo</ion-option>
-      <ion-option value="Ford">Ford</ion-option>
+    <ion-select [(ngModel)]="channelName" (ionChange)="channelChange();">
+      <ion-option *ngFor="let cname of channellist" [value]="cname">{{cname}}</ion-option>
     </ion-select>
   </ion-item>
+    <ion-item *ngIf="channelName == 'Ford'">
+        <ion-label color="primary">New subchain name</ion-label>
+        <ion-input type="text" [(ngModel)]="newChannel" name="newChannel"></ion-input>
+    </ion-item>   
+    <ion-item>
+      <button *ngIf="channelName == 'Ford'" id="addclient" ion-button color="balanced" block icon-left (click)=addChannel()>
+        Add new client/subchain
+      </button> 
+    </ion-item>
 </ion-content>

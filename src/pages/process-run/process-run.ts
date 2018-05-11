@@ -46,6 +46,9 @@ export class ProcessRunPage {
     if (this.data.height < 496 || this.data.height > 504) { suspect = "yes"; }
     if (this.data.width < 996 || this.data.width > 1004) { suspect = "yes"; }
 
+    var d = new Date();
+    var n = d.toLocaleString();
+
     let datablock = {
       "type": this.channelid,
       "partid": this.data.partid,
@@ -53,7 +56,8 @@ export class ProcessRunPage {
       "width": this.data.width,
       "height": this.data.height,
       "scratched": this.data.scratched,
-      "suspect": suspect
+      "suspect": suspect,
+      "blockstamp": n
     }
 
     let transaction = {
@@ -64,6 +68,8 @@ export class ProcessRunPage {
 
     let data = JSON.stringify(transaction);
 
+    console.log(data);
+
     let res = this.restProvider.addStamp(data).then((result) => {
       console.log(result);
       this.data.response = result;
@@ -71,6 +77,6 @@ export class ProcessRunPage {
       console.log(err);
     });
 
-    console.log(res);
+    console.log("done");
   }
 }
