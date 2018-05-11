@@ -22,8 +22,8 @@ export class ProcessRunPage {
 
     this.storage.get('channel').then((val) => {
       if(val == undefined){
-        this.storage.set("channel", "ACME");
-        this.channelid = "ACME";
+        this.storage.set("channel", "Ford");
+        this.channelid = "Ford";
       }
         this.channelid = val;
     });
@@ -39,7 +39,7 @@ export class ProcessRunPage {
 
   write() {
 
-    let assetid = 1525635630772;
+    let assetid = 1526056384;
 
     let suspect = "no";
     if (this.data.length < 1096 || this.data.length > 2004) { suspect = "yes"; }

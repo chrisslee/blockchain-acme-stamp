@@ -38,7 +38,7 @@ export class ProcessSettings {
   
   addChannel() {
     if (this.newChannel != '') {
-      let assetid = 1525635630772;
+      let assetid = 1526056384;
 
       let datablock = {
         "type": "channel",

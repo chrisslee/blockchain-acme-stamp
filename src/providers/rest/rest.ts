@@ -11,10 +11,11 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable()
 export class RestProvider {
 
-  private apiUrl = 'http://18.188.24.241:3000/api/SampleTransaction';
+  //private apiUrl = 'http://18.188.24.241:3000/api/SampleTransaction';
+  private apiUrl = 'http://18.219.231.138:3000/api/SampleTransaction';
 
   constructor(public http: HttpClient) {
-    console.log('Hello RestProvider Provider');
+    console.log('Connected to processchain on 18.219.231.138:3000');
   }
 
   getBlockChain(): Observable<string[]> {
