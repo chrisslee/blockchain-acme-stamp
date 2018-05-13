@@ -14,20 +14,19 @@
 
   <ion-card id="processChainView-card21">
     <ion-list>
-
-      <ion-item text-wrap id="block" *ngFor="let block of blocks | search : terms | sort: {property: column, order: order}">
+      <ion-item text-wrap id="payload" *ngFor="let payload of payloads | search : terms | sort: {property: column, order: order}">
         <ion-card>
           <ion-card-header>
-              {{block.transactionId}}
+              PartId: {{payload.partid}}
           </ion-card-header>
           <ion-card-content class="item item-text-wrap">
-            <p> {{block.newValue}}</p>
+            <p>Suspect: {{payload.suspect}}</p>
+            <p>Date: {{payload.blockstamp}}</p>
+            <p>ProcessChain Transaction: {{payload.blocktransaction}}</p>
+            <p>Block Contents: {{payload.blockvalue}}</p>
           </ion-card-content>
-          
-          <p>{{block.timestamp}}</p>
         </ion-card>
       </ion-item>
-
     </ion-list>
   </ion-card>
 </ion-content>

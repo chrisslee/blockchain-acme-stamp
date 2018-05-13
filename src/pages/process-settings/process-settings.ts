@@ -55,6 +55,7 @@ export class ProcessSettings {
 
       let res = this.rest.addStamp(data).then((result) => {
         console.log(result);
+        this.channellist=[];
         this.getChannels();
       }, (err) => {
         console.log(err);
